@@ -16,6 +16,17 @@ namespace SimpleWatchDog
 
             // 要監控的應用程序的名稱
             string filePath = @"./applicationPath.txt";
+
+            // 檢查檔案是否存在，如果不存在，則創建檔案和路徑
+            if (!File.Exists(filePath))
+            {
+                // 確保目錄存在
+                Directory.CreateDirectory(Path.GetDirectoryName(filePath));
+                // 創建並寫入預設路徑，這裡需要替換為實際的預設路徑
+                File.WriteAllText(filePath, @"D:\DispatchSystem.exe");
+            }
+
+
             string applicationName = File.ReadAllText(filePath).Trim(); // 使用 Trim() 移除可能存在的換行符或空格
 
             // string applicationName = @"D:\00_專案文件\01_1_AGV 派車系統\F18AB Parts AGV\CODE\dispatchsystem\DispatchSystem\bin\Debug\RunDispatchSystem.bat";
